@@ -41,6 +41,7 @@ class ContinuousConvBlock(BaseContinuousConv):
         model=None,
         optimize=False,
         no_overlap=False,
+        device: str = "cpu",
     ):
         """
         :param input_numb_field: Number of fields :math:`N_{in}` in the input.
@@ -129,10 +130,12 @@ class ContinuousConvBlock(BaseContinuousConv):
         self._integral = Integral("discrete")
 
         # create the network
-        self._net = self._spawn_networks(model)
+        self._net = self._spawn_networks(model).to(device)
 
         # stride for continuous convolution overridden
-        self._stride = self._stride._stride_discrete
+        self._stride = self._stride._stride_discrete.to(device)
+
+        # self._dim = self._dim.to(device)
 
     def _spawn_networks(self, model):
         """
