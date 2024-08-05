@@ -135,7 +135,6 @@ class ContinuousConvBlock(BaseContinuousConv):
         # stride for continuous convolution overridden
         self._stride = self._stride._stride_discrete.to(device)
 
-        # self._dim = self._dim.to(device)
 
     def _spawn_networks(self, model):
         """
@@ -408,8 +407,10 @@ class ContinuousConvBlock(BaseContinuousConv):
             self._initialize_convolution(X, "inverse")
 
         # initialize grid
-        X = self._grid_transpose.clone().detach()
-        conv_transposed = self._grid_transpose.clone().detach()
+        X = self._grid_transpose.clone()
+        # X = self._grid_transpose.clone().detach()
+        conv_transposed = self._grid_transpose.clone()
+        # conv_transposed = self._grid_transpose.clone().detach()
 
         # total number of dim
         tot_dim = self._input_numb_field * self._output_numb_field

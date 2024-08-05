@@ -1,5 +1,6 @@
 __all__ = [
     "ContinuousConvBlock",
+    "RBFLayer",
     "ResidualBlock",
     "EnhancedLinear",
     "SpectralConvBlock1D",
@@ -22,6 +23,7 @@ from .spectral import (
     SpectralConvBlock2D,
     SpectralConvBlock3D,
 )
+from .rbf import RBFLayer
 from .fourier import FourierBlock1D, FourierBlock2D, FourierBlock3D
 from .pod import PODBlock
 from .embedding import PeriodicBoundaryEmbedding, FourierFeatureEmbedding
